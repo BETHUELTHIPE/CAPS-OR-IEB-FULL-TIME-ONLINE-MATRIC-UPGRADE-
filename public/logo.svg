@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E"/>
+      <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+  </defs>
+  
+  <g transform="translate(250, 160)">
+    <!-- Main Pink Outer Ring Arc -->
+    <path d="M -90 -20 A 95 95 0 1 0 75 40 A 75 75 0 1 1 -70 -10 Z" fill="url(#pinkGrad)"/>
+    
+    <!-- Cyan Upper Right Ring Arc -->
+    <path d="M -20 -95 A 95 95 0 0 1 95 0 A 95 95 0 0 1 80 50 A 75 75 0 0 0 75 -15 A 75 75 0 0 0 -10 -75 Z" fill="url(#cyanGrad)"/>
+    
+    <!-- Inner Dark Navy Crescent -->
+    <path d="M -10 -65 A 65 65 0 0 1 65 10 A 50 50 0 0 0 -5 -50 Z" fill="#0A2540"/>
+    
+    <!-- Left Badge 'A' -->
+    <circle cx="-82" cy="-12" r="26" fill="#0A2540" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="-82" y="-3" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="26" fill="#FFFFFF" text-anchor="middle">A</text>
+    
+    <!-- Center 'Learning' Text -->
+    <text x="0" y="-3" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-style="italic" font-size="24" fill="#F43F5E" text-anchor="middle">Learning</text>
+    
+    <!-- Right Badge 'H' -->
+    <rect x="58" y="-30" width="36" height="42" rx="8" fill="#0A2540" stroke="#06B6D4" stroke-width="1.5"/>
+    <text x="76" y="-1" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="26" fill="#06B6D4" text-anchor="middle">H</text>
+  </g>
+
+  <!-- Typography Below -->
+  <g transform="translate(250, 310)">
+    <!-- AMARIS -->
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="52" fill="#0A2540" text-anchor="middle" letter-spacing="4">AMARIS</text>
+    
+    <!-- — LEARNING — -->
+    <text x="0" y="42" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" fill="#0A2540" text-anchor="middle" letter-spacing="6">— LEARNING —</text>
+    
+    <!-- HUB -->
+    <text x="0" y="105" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="58" fill="#0A2540" text-anchor="middle" letter-spacing="5">HUB</text>
+  </g>
+</svg>

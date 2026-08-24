@@ -1,0 +1,11 @@
+{
+  "name": "Remix Remix Remix: Remix: Remix: Remix: Amaris Mathematics Hub v4",
+  "description": "A premium online mathematics tutoring and matric upgrade platform with Google Calendar student sync and Super Admin Google Sheets live analytics integration (CAPS and IEB syllabus).",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

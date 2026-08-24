@@ -1,0 +1,55 @@
+name: AMH CI/CD Quality & Security Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-gate:
+    name: Build, Lint, Test & Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: TypeScript Static Type Checking & Lint
+        run: npm run lint
+
+      - name: Run Pytest API & Celery Unit Tests
+        run: |
+          pip install pytest pytest-cov
+          pytest --cov=. --cov-report=html --cov-report=term-missing --cov-fail-under=90
+
+      - name: Run Jest & React Testing Library Frontend Tests
+        run: npm test -- --coverage
+
+      - name: Execute OWASP Security Vulnerability Scan
+        run: |
+          pip install bandit safety
+          bandit -r . -x ./node_modules
+          safety check
+
+      - name: Compile Production Build
+        run: npm run build
+
+      - name: Generate Automated Test Summary & Artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: amh-test-reports
+          path: |
+            htmlcov/
+            coverage/
+            TESTING_DOCUMENTATION.md

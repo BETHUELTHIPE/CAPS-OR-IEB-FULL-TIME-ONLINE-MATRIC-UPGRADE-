@@ -1,0 +1,552 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", "Inter", sans-serif;
+  
+  --color-royal-50: #eff6ff;
+  --color-royal-100: #dbeafe;
+  --color-royal-200: #bfdbfe;
+  --color-royal-300: #93c5fd;
+  --color-royal-400: #60a5fa;
+  --color-royal-500: #3b82f6;
+  --color-royal-600: #2563eb;
+  --color-royal-700: #1e40af;
+  --color-royal-800: #1e3a8a;
+  --color-royal-900: #1e3a8a;
+  --color-royal-950: #172554;
+
+  --color-gold-50: #fffbeb;
+  --color-gold-100: #fef3c7;
+  --color-gold-200: #fde68a;
+  --color-gold-300: #fcd34d;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+  --color-gold-700: #b45309;
+  --color-gold-800: #92400e;
+  --color-gold-900: #78350f;
+  --color-gold-950: #451a03;
+
+  --color-navy-50: #f8fafc;
+  --color-navy-100: #f1f5f9;
+  --color-navy-200: #e2e8f0;
+  --color-navy-300: #cbd5e1;
+  --color-navy-400: #94a3b8;
+  --color-navy-500: #64748b;
+  --color-navy-600: #475569;
+  --color-navy-700: #334155;
+  --color-navy-800: #1e293b;
+  --color-navy-900: #0f172a;
+  --color-navy-950: #020617;
+}
+
+/* ==========================================================================
+   Accessibility & High Contrast Mode Styles (WCAG 2.1 AAA Compliant)
+   ========================================================================== */
+
+/* Modern UI Animation & Glass Utilities */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* Glassmorphism card utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 41, 59, 0.8);
+}
+
+/* Font Scale Utilities */
+html.font-scale-large {
+  font-size: 115%;
+}
+html.font-scale-xl {
+  font-size: 130%;
+}
+
+/* Reduced Motion Override */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Skip-to-content Link for Keyboard & Screen Reader Users */
+.skip-to-content-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #facc15;
+  color: #020617;
+  font-weight: 900;
+  font-family: var(--font-sans);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  z-index: 9999;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  transition: top 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: underline;
+  border: 3px solid #000000;
+}
+.skip-to-content-link:focus {
+  top: 1rem;
+  outline: 4px solid #3b82f6;
+  outline-offset: 4px;
+}
+
+/* Enhanced Keyboard Focus Indicators Across Portal */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #f59e0b !important;
+  outline-offset: 2px !important;
+}
+
+/* High Contrast Mode CSS Theme Overrides */
+html.high-contrast {
+  color-scheme: dark;
+}
+
+html.high-contrast body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.high-contrast header,
+html.high-contrast nav,
+html.high-contrast footer,
+html.high-contrast section,
+html.high-contrast aside,
+html.high-contrast article,
+html.high-contrast div {
+  border-color: #ffffff !important;
+}
+
+html.high-contrast .bg-white,
+html.high-contrast [class*="bg-navy-"],
+html.high-contrast [class*="bg-royal-"],
+html.high-contrast [class*="bg-slate-"] {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.high-contrast button {
+  border: 2px solid #ffffff !important;
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+  font-weight: 900 !important;
+}
+
+html.high-contrast button:hover {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+
+html.high-contrast a {
+  color: #ffff00 !important;
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+}
+
+html.high-contrast input,
+html.high-contrast select,
+html.high-contrast textarea {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+html.high-contrast input::placeholder,
+html.high-contrast textarea::placeholder {
+  color: #fde047 !important;
+}
+
+html.high-contrast span[class*="text-navy-"],
+html.high-contrast p[class*="text-navy-"],
+html.high-contrast h1[class*="text-navy-"],
+html.high-contrast h2[class*="text-navy-"],
+html.high-contrast h3[class*="text-navy-"] {
+  color: #ffffff !important;
+}
+
+html.high-contrast .text-royal-600,
+html.high-contrast .text-royal-700,
+html.high-contrast .text-gold-400,
+html.high-contrast .text-gold-500 {
+  color: #ffff00 !important;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-navy-50);
+  color: var(--color-navy-900);
+  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.dark body {
+  background-color: var(--color-navy-950);
+  color: var(--color-navy-100);
+}
+
+/* Global smooth transition effect for theme theme switching */
+header, main, footer, section, article, nav, aside, div, button, input, select, textarea, .card {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-300);
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-navy-700);
+}
+
+/* Print styles for AMARIS official high-contrast mathematics papers and student worksheets */
+@media print {
+  /* Reset background and text colors to physical paper standards */
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-size: 12pt;
+    line-height: 1.5;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Repeating subtle diagonal 'AMH' watermark background across printed pages */
+  body::before {
+    content: "" !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -100 !important;
+    pointer-events: none !important;
+    opacity: 0.04 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Ctext x='50%25' y='50%25' fill='%23000000' font-family='sans-serif' font-weight='900' font-size='28' text-anchor='middle' dominant-baseline='middle' transform='rotate(-45 80 80)'%3EAMH%3C/text%3E%3C/svg%3E") !important;
+    background-repeat: repeat !important;
+    display: block !important;
+  }
+
+  /* Standard print overrides to hide screen layouts, sidebars, navigations and interactive tools completely */
+  #root > div:not(.print-only):not(:has(.print-only)),
+  .screen-only,
+  header,
+  footer,
+  aside,
+  nav,
+  button:not(.print-preserve),
+  input:not(.print-preserve),
+  select:not(.print-preserve),
+  textarea:not(.print-preserve),
+  .no-print,
+  .modal-backdrop,
+  .toast-container,
+  [role="dialog"]:not(:has(.print-only)) {
+    display: none !important;
+  }
+
+  /* Enable and properly format print-only containers */
+  .print-only {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    color: #0f172a !important;
+  }
+
+  /* =========================================================================
+     COMPREHENSIVE PAGE BREAK CONTROLS FOR STUDENT WORKSHEETS & EXAM PAPERS
+     ========================================================================= */
+  
+  /* Prevent question headers, math equation cards, and workspace blocks from breaking across physical pages */
+  .print-avoid-break,
+  .page-break-inside-avoid,
+  .break-inside-avoid,
+  .worksheet-question-card,
+  .worksheet-subquestion,
+  .worksheet-student-box,
+  .worksheet-formula-card,
+  .worksheet-instructions-box,
+  .worksheet-memo-box,
+  .worksheet-qr-box,
+  .worksheet-score-badge,
+  .avoid-page-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    break-inside: avoid-page !important;
+  }
+
+  /* Force clean physical page breaks before designated sections (e.g. Formula Sheets, Memorandums, Part B) */
+  .print-force-page-break,
+  .print-break-before,
+  .page-break-before-always,
+  .break-before-page,
+  .worksheet-formula-sheet,
+  .worksheet-answer-key,
+  .worksheet-memorandum-section,
+  .force-new-page {
+    page-break-before: always !important;
+    break-before: page !important;
+    break-before: always !important;
+  }
+
+  /* Force page break immediately after a component */
+  .print-break-after,
+  .page-break-after-always,
+  .break-after-page {
+    page-break-after: always !important;
+    break-after: page !important;
+    break-after: always !important;
+  }
+
+  /* Prevent headings and questions headers from being orphaned at the bottom of a page */
+  h1, h2, h3, h4, h5, h6,
+  .worksheet-question-header,
+  .section-header,
+  .exam-question-title {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    break-after: avoid-page !important;
+  }
+
+  /* Strict orphan and widow protection across paragraphs and list items */
+  p, div, li, td, th {
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+
+  /* Table and rows page break behavior */
+  table {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  tr, thead, tbody {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* =========================================================================
+     PAGE SIZE & RUNNING MARGIN CONFIGURATION
+     ========================================================================= */
+  @page {
+    size: A4 portrait;
+    margin: 15mm 12mm 15mm 12mm;
+
+    @top-left {
+      content: "Amaris Mathematics Hub";
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-size: 8pt;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    @top-right {
+      content: "CAPS & IEB Official Mathematics";
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-size: 7.5pt;
+      color: #64748b;
+    }
+
+    @bottom-left {
+      content: "Official Student Worksheet • Confidential & Verified";
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-size: 7.5pt;
+      color: #64748b;
+    }
+
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-size: 8pt;
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+  }
+
+  /* =========================================================================
+     STUDENT WORKSHEET SPECIFIC FORMATTING
+     ========================================================================= */
+  
+  /* Crisp student answer writing lines */
+  .worksheet-workspace-line,
+  .worksheet-dotted-line {
+    border-bottom: 1px dashed #94a3b8 !important;
+    height: 22px !important;
+    width: 100% !important;
+    display: block !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* Student fill-in box */
+  .worksheet-student-box {
+    border: 1.5px solid #334155 !important;
+    background-color: #f8fafc !important;
+    padding: 10px 14px !important;
+    border-radius: 4px !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Question card border styling for print */
+  .worksheet-question-card {
+    border-bottom: 1.5px solid #cbd5e1 !important;
+    padding-bottom: 14px !important;
+    margin-bottom: 18px !important;
+  }
+
+  /* High-contrast mark allocation badges */
+  .worksheet-marks-tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+  }
+
+  /* Formula sheet grids on print */
+  .worksheet-formula-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .worksheet-formula-card {
+    border: 1px solid #cbd5e1 !important;
+    padding: 8px !important;
+    background: #f8fafc !important;
+    border-radius: 4px !important;
+  }
+
+  /* QR code crisp rendering without blur */
+  .worksheet-qr-code,
+  .worksheet-qr-code svg {
+    image-rendering: pixelated !important;
+    display: inline-block !important;
+  }
+
+  /* =========================================================================
+     COMPACT VIEW VS STANDARD VIEW SPACING OVERRIDES
+     ========================================================================= */
+  
+  /* Compact View: Optimized tighter spacing to maximize questions per physical page */
+  .compact-view-worksheet,
+  .worksheet-compact-mode {
+    line-height: 1.35 !important;
+  }
+
+  .compact-view-worksheet .worksheet-header-box,
+  .worksheet-compact-mode .worksheet-header-box {
+    padding-bottom: 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .compact-view-worksheet .worksheet-student-box,
+  .worksheet-compact-mode .worksheet-student-box {
+    padding: 6px 10px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .compact-view-worksheet .worksheet-instructions-box,
+  .worksheet-compact-mode .worksheet-instructions-box {
+    padding: 4px 8px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .compact-view-worksheet .worksheet-question-card,
+  .worksheet-compact-mode .worksheet-question-card {
+    border-bottom: 1px solid #cbd5e1 !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .compact-view-worksheet .worksheet-subquestion,
+  .worksheet-compact-mode .worksheet-subquestion {
+    margin-bottom: 4px !important;
+  }
+
+  .compact-view-worksheet .worksheet-workspace-line,
+  .worksheet-compact-mode .worksheet-workspace-line {
+    border-bottom: 1px dashed #94a3b8 !important;
+    height: 14px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .compact-view-worksheet .worksheet-memo-box,
+  .worksheet-compact-mode .worksheet-memo-box {
+    padding: 4px 8px !important;
+    margin-top: 2px !important;
+    margin-bottom: 4px !important;
+    font-size: 9.5pt !important;
+  }
+
+  .compact-view-worksheet .worksheet-formula-card,
+  .worksheet-compact-mode .worksheet-formula-card {
+    padding: 4px 6px !important;
+    gap: 6px !important;
+  }
+
+  /* Ink-saver mode styling for eco-friendly printing */
+  .ink-saver-mode * {
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .ink-saver-mode .border-amber-600,
+  .ink-saver-mode .border-royal-600,
+  .ink-saver-mode .border-purple-600 {
+    border-color: #475569 !important;
+  }
+}
